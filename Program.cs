@@ -8,7 +8,7 @@ namespace euler_249_c_sharp
     {
         static void Main(string[] args)
         {
-            List<int> base_sets = new List<int> { 2, 3, 5 };
+            List<int> base_sets = new List<int> { 2, 3, 5, 7};
 
             SubSets all_sets = new SubSets(base_sets);
 
@@ -68,6 +68,29 @@ namespace euler_249_c_sharp
             //}
         }
 
+        public bool IsPrime(int number)
+        {
+            if (number <= 1)
+            {
+                return false;
+            }
+            else if (number == 2)
+            {
+                return true;
+            }
+            else if (number % 2 == 0)
+            {
+                return false;
+            }
+            for(int i = 3; i < number/2; i ++)
+            {
+                if (number % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public void SummedSets()
         {
             cleaned_sums = new List<int>();
@@ -78,10 +101,13 @@ namespace euler_249_c_sharp
                 {
                     sum += b;
                 }
-                if (!cleaned_sums.Contains(sum))
-                {
-                    cleaned_sums.Add(sum);
-                }
+                //if (!cleaned_sums.Contains(sum))
+                //{
+                    if (IsPrime(sum))
+                    {
+                        cleaned_sums.Add(sum);
+                    }
+                //}
             }
         }
     }
