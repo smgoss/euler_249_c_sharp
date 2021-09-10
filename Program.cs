@@ -120,12 +120,19 @@ class SetEqualityComparer : IEqualityComparer<HashSet<int>>
 {
     public bool Equals(HashSet<int> a, HashSet<int> b)
     {
-        bool result = true;
+        if (a.Count != b.Count)
+        {
+            return false;
+        }
+        HashSet<int> resultSet = new HashSet<int>();
         foreach(int x in a)
         {
-            
+            if (b.Contains(x))
+            {
+                resultSet.Add(x);
+            }
         }
-        return result;
+        return resultSet.Count == a.Count;
     }
 
     public int GetHashCode(HashSet<int> set)
