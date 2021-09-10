@@ -8,7 +8,7 @@ namespace euler_249_c_sharp
     {
         static void Main(string[] args)
         {
-            List<int> base_sets = new List<int> { 2, 3, 5, 7};
+            HashSet<int> base_sets = new HashSet<int> { 2, 3, 5};
 
             SubSets all_sets = new SubSets(base_sets);
 
@@ -19,18 +19,20 @@ namespace euler_249_c_sharp
 
     class SubSets
     {
-        private List<int> base_set;
+        private HashSet<int> base_set;
 
-        private List<List<int>> subsets;
+        private HashSet<HashSet<int>> subsets;
 
-        private List<int> cleaned_sums;
-        public SubSets (List<int> base_set)
+        private HashSet<int> cleaned_sums;
+
+        private SetEqualityComparer comp = new SetEqualityComparer();
+        public SubSets (HashSet<int> base_set)
         {
             this.base_set = base_set;
-            subsets = new List<List<int>> ();
+            subsets = new HashSet<HashSet<int>> (comp);
         }
 
-        public void FindSubsets(List<int> current_set)
+        public void FindSubsets(HashSet<int> current_set)
         {   if(current_set.Count > 0)
             {
                 subsets.Add(current_set);
@@ -38,13 +40,13 @@ namespace euler_249_c_sharp
 
             foreach(int a in current_set)
             {
-                List<int> next_set = new List<int>(current_set);
+                HashSet<int> next_set = new HashSet<int>(current_set);
                 next_set.Remove(a);
                 FindSubsets(next_set);
             }
         }
 
-        public void PrintList(List<int> the_set)
+        public void PrintHashSet(HashSet<int> the_set)
         {
             foreach (int a in the_set)
             {
@@ -55,17 +57,17 @@ namespace euler_249_c_sharp
 
         public void PrintSubSets()
         {
-            
-            //foreach (List<int> a in subsets)
-            //{
-                SummedSets();
+           
+            foreach (HashSet<int> a in subsets)
+            {
+                //SummedSets();
                 Console.Write("{");
-                foreach (int b in cleaned_sums)
+                foreach (int b in a)
                 {
                     Console.Write(" " + b + ",");
                 }
                 Console.Write("} ");
-            //}
+            }
         }
 
         public bool IsPrime(int number)
@@ -93,8 +95,8 @@ namespace euler_249_c_sharp
         }
         public void SummedSets()
         {
-            cleaned_sums = new List<int>();
-            foreach(List<int> a in subsets)
+            cleaned_sums = new HashSet<int>();
+            foreach(HashSet<int> a in subsets)
             {
                 int sum = 0;
                 foreach(int b in a)
@@ -110,5 +112,30 @@ namespace euler_249_c_sharp
                 //}
             }
         }
+
     }
 }
+
+class SetEqualityComparer : IEqualityComparer<HashSet<int>>
+{
+    public bool Equals(HashSet<int> a, HashSet<int> b)
+    {
+        bool result = true;
+        foreach(int x in a)
+        {
+            
+        }
+        return result;
+    }
+
+    public int GetHashCode(HashSet<int> set)
+    {
+        int sum = 0;
+        foreach(int a in set)
+        {
+            sum+= a;
+        }
+        return sum.GetHashCode();
+    }
+}
+
