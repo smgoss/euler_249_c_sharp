@@ -8,11 +8,12 @@ namespace euler_249_c_sharp
     {
         static void Main(string[] args)
         {
-            HashSet<int> base_sets = new HashSet<int> { 2, 3, 5};
+            HashSet<int> base_sets = new HashSet<int> { 2, 3, 5, 7};
 
-            SubSets all_sets = new SubSets(base_sets);
+            SubSets all_sets = new SubSets();
 
             all_sets.FindSubsets(base_sets);
+            all_sets.PrimeSets();
             all_sets.PrintSubSets();
         }
     }
@@ -23,12 +24,9 @@ namespace euler_249_c_sharp
 
         private HashSet<HashSet<int>> subsets;
 
-        private HashSet<int> cleaned_sums;
-
         private SetEqualityComparer comp = new SetEqualityComparer();
-        public SubSets (HashSet<int> base_set)
+        public SubSets ()
         {
-            this.base_set = base_set;
             subsets = new HashSet<HashSet<int>> (comp);
         }
 
@@ -46,21 +44,11 @@ namespace euler_249_c_sharp
             }
         }
 
-        public void PrintHashSet(HashSet<int> the_set)
-        {
-            foreach (int a in the_set)
-            {
-                Console.Write(a + " ");
-            }
-            Console.WriteLine();
-        }
-
         public void PrintSubSets()
         {
            
             foreach (HashSet<int> a in subsets)
             {
-                //SummedSets();
                 Console.Write("{");
                 foreach (int b in a)
                 {
@@ -93,24 +81,22 @@ namespace euler_249_c_sharp
             }
             return true;
         }
-        public void SummedSets()
+        public void PrimeSets()
         {
-            cleaned_sums = new HashSet<int>();
+            HashSet<HashSet<int>> prime_sets = new HashSet<HashSet<int>>();
             foreach(HashSet<int> a in subsets)
             {
                 int sum = 0;
-                foreach(int b in a)
+                foreach (int b in a)
                 {
                     sum += b;
                 }
-                //if (!cleaned_sums.Contains(sum))
-                //{
-                    if (IsPrime(sum))
-                    {
-                        cleaned_sums.Add(sum);
-                    }
-                //}
+                if (IsPrime(sum))
+                {
+                    prime_sets.Add(a);
+                }
             }
+            subsets = prime_sets;
         }
 
     }
