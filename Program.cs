@@ -22,6 +22,8 @@ namespace euler_249_c_sharp
         private List<int> base_set;
 
         private List<List<int>> subsets;
+
+        private List<List<int>> cleaned_subsets;
         public SubSets (List<int> base_set)
         {
             this.base_set = base_set;
@@ -29,8 +31,10 @@ namespace euler_249_c_sharp
         }
 
         public void FindSubsets(List<int> current_set)
-        {
-            subsets.Add(current_set);
+        {   if(current_set.Count > 0)
+            {
+                subsets.Add(current_set);
+            }
             foreach(int a in current_set)
             {
                 List<int> next_set = new List<int>(current_set);
@@ -50,8 +54,7 @@ namespace euler_249_c_sharp
 
         public void PrintSubSets()
         {
-            List<List<int>> cleaned_subsets = subsets.Distinct().ToList();
-            foreach (List<int> a in cleaned_subsets)
+            foreach (List<int> a in subsets)
             {
                 Console.Write("{");
                 foreach (int b in a)
@@ -59,7 +62,19 @@ namespace euler_249_c_sharp
                     
                     Console.Write(" " + b + ",");
                 }
-                Console.Write("}, ");
+                Console.Write("} ");
+            }
+        }
+
+        public void cleanSubSets()
+        {
+            List<List<int>> cleanedSet = new List<List<int>>();
+            for(int i = 0; i < subsets.Count; i++)
+            {
+                for(int j = i + 1; j < subsets.Count; j++)
+                {
+                 //   if( )
+                }
             }
         }
     }
