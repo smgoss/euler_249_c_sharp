@@ -23,7 +23,7 @@ namespace euler_249_c_sharp
 
         private List<List<int>> subsets;
 
-        private List<List<int>> cleaned_subsets;
+        private List<int> cleaned_sums;
         public SubSets (List<int> base_set)
         {
             this.base_set = base_set;
@@ -35,6 +35,7 @@ namespace euler_249_c_sharp
             {
                 subsets.Add(current_set);
             }
+
             foreach(int a in current_set)
             {
                 List<int> next_set = new List<int>(current_set);
@@ -54,26 +55,32 @@ namespace euler_249_c_sharp
 
         public void PrintSubSets()
         {
-            foreach (List<int> a in subsets)
-            {
+            
+            //foreach (List<int> a in subsets)
+            //{
+                SummedSets();
                 Console.Write("{");
-                foreach (int b in a)
+                foreach (int b in cleaned_sums)
                 {
-                    
                     Console.Write(" " + b + ",");
                 }
                 Console.Write("} ");
-            }
+            //}
         }
 
-        public void cleanSubSets()
+        public void SummedSets()
         {
-            List<List<int>> cleanedSet = new List<List<int>>();
-            for(int i = 0; i < subsets.Count; i++)
+            cleaned_sums = new List<int>();
+            foreach(List<int> a in subsets)
             {
-                for(int j = i + 1; j < subsets.Count; j++)
+                int sum = 0;
+                foreach(int b in a)
                 {
-                 //   if( )
+                    sum += b;
+                }
+                if (!cleaned_sums.Contains(sum))
+                {
+                    cleaned_sums.Add(sum);
                 }
             }
         }
