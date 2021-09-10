@@ -8,20 +8,40 @@ namespace euler_249_c_sharp
     {
         static void Main(string[] args)
         {
-            HashSet<int> base_sets = new HashSet<int> { 2, 3, 5, 7};
-
-            SubSets all_sets = new SubSets();
-
-            all_sets.FindSubsets(base_sets);
-            all_sets.PrimeSets();
-            all_sets.PrintSubSets();
+            string k_string = Console.ReadLine();
+            string n_string = Console.ReadLine();
+            int k = 0;
+            Int32.TryParse(k_string, out k);
+            List<string> n_strings = n_string.Split().ToList();
+            List<int> n_list = new List<int>();
+            for (int i = 0; i < k; i ++)
+            {
+                int out_int;
+                Int32.TryParse(n_strings[i], out out_int);
+                n_list.Add(out_int);
+            }
+            bool first = true;
+            foreach(int n in n_list)
+            {
+                SubSets all_sets = new SubSets();
+                if (!first)
+                    Console.Write(" ");
+                else
+                    first = false;
+                HashSet<int> n_set = new HashSet<int>(all_sets.FindAllPrimes(n));
+                all_sets.FindSubsets(n_set);
+                all_sets.PrimeSets();
+                all_sets.PrintCount();
+                // find all primes
+                // find all prime subsets
+                // count result and print
+            }
         }
+        
     }
 
     class SubSets
     {
-        private HashSet<int> base_set;
-
         private HashSet<HashSet<int>> subsets;
 
         private SetEqualityComparer comp = new SetEqualityComparer();
@@ -97,6 +117,22 @@ namespace euler_249_c_sharp
                 }
             }
             subsets = prime_sets;
+        }
+        public void PrintCount()
+        {
+            Console.Write(subsets.Count);
+        }
+        public HashSet<int> FindAllPrimes(int n)
+        {
+            HashSet<int> n_primes = new HashSet<int>();
+            for(int i = 0; i < n; i ++)
+            {
+                if (IsPrime(i))
+                {
+                    n_primes.Add(i);
+                }
+            }
+            return n_primes;
         }
 
     }
