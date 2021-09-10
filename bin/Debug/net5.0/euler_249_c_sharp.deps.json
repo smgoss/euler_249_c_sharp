@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "euler_249_c_sharp/1.0.0": {
+        "runtime": {
+          "euler_249_c_sharp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "euler_249_c_sharp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
