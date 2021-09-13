@@ -26,16 +26,20 @@ namespace euler_249_c_sharp
                 SubSets all_sets = new SubSets();
                 if (!first)
                     Console.Write(" ");
-                else
                     first = false;
                 HashSet<int> n_set = new HashSet<int>(all_sets.FindAllPrimes(n));
+                Console.WriteLine("Found All Primes");
+                Console.WriteLine("Count " + n_set.Count);
                 all_sets.FindSubsets(n_set);
+                Console.WriteLine("Found Subsets");
                 all_sets.PrimeSets();
+                Console.WriteLine("Found Prime Sets");
                 all_sets.PrintCount();
                 // find all primes
                 // find all prime subsets
                 // count result and print
             }
+            Console.WriteLine();
         }
         
     }
@@ -51,16 +55,33 @@ namespace euler_249_c_sharp
         }
 
         public void FindSubsets(HashSet<int> current_set)
-        {   if(current_set.Count > 0)
+        {   
+            Console.WriteLine("Set Size: " + subsets.Count);
+            if (!current_set.Contains(2) && current_set.Count % 2 == 0)
             {
-                subsets.Add(current_set);
+                // don't add
             }
-
+             else if(current_set.Count > 0)
+            {
+                int startCount = subsets.Count;
+                subsets.Add(current_set);
+                int endCount = subsets.Count;
+                if (startCount == endCount)
+                {
+                    Console.Write("exit recursion early");
+                    return;
+                }
+            }
             foreach(int a in current_set)
             {
+
                 HashSet<int> next_set = new HashSet<int>(current_set);
                 next_set.Remove(a);
-                FindSubsets(next_set);
+                if (!subsets.Contains(next_set))
+                {
+                    FindSubsets(next_set);
+                }
+                
             }
         }
 

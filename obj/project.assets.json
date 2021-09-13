@@ -8,26 +8,24 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\gosss\\.nuget\\packages\\": {}
+    "/Users/sgoss/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workspaces\\euler_249_c_sharp\\euler_249_c_sharp.csproj",
+      "projectUniqueName": "/Users/sgoss/workspace/euler_249_c_sharp/euler_249_c_sharp.csproj",
       "projectName": "euler_249_c_sharp",
-      "projectPath": "C:\\workspaces\\euler_249_c_sharp\\euler_249_c_sharp.csproj",
-      "packagesPath": "C:\\Users\\gosss\\.nuget\\packages\\",
-      "outputPath": "C:\\workspaces\\euler_249_c_sharp\\obj\\",
+      "projectPath": "/Users/sgoss/workspace/euler_249_c_sharp/euler_249_c_sharp.csproj",
+      "packagesPath": "/Users/sgoss/.nuget/packages/",
+      "outputPath": "/Users/sgoss/workspace/euler_249_c_sharp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gosss\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/sgoss/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }
