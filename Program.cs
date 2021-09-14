@@ -28,13 +28,9 @@ namespace euler_249_c_sharp
                     Console.Write(" ");
                     first = false;
                 HashSet<int> n_set = new HashSet<int>(all_sets.FindAllPrimes(n));
-                Console.WriteLine("Found All Primes");
-                Console.WriteLine("Count " + n_set.Count);
-                all_sets.FindSubsets(n_set);
-                Console.WriteLine("Found Subsets");
-                all_sets.PrimeSets();
-                Console.WriteLine("Found Prime Sets");
-                all_sets.PrintCount();
+                Console.Write(all_sets.FindSubsets(n_set));
+                //all_sets.PrimeSets();
+                //all_sets.PrintCount();
                 // find all primes
                 // find all prime subsets
                 // count result and print
@@ -54,24 +50,8 @@ namespace euler_249_c_sharp
             subsets = new HashSet<HashSet<int>> (comp);
         }
 
-        public void FindSubsets(HashSet<int> current_set)
+        public int FindSubsets(HashSet<int> current_set)
         {   
-            //Console.WriteLine("Set Size: " + subsets.Count);
-            /*if (!current_set.Contains(2) && current_set.Count % 2 == 0)
-            {
-                // don't add
-            }
-             else if(current_set.Count > 0)
-            {
-                int startCount = subsets.Count;
-                subsets.Add(current_set);
-                int endCount = subsets.Count;
-                if (startCount == endCount)
-                {
-                    Console.Write("exit recursion early");
-                    return;
-                }
-            }*/
             List<int> setList = current_set.ToList();
             List<int> primeList = new List<int>();
 
@@ -86,7 +66,9 @@ namespace euler_249_c_sharp
                     }
                 }
                 primeList.Add(a);
+                Console.WriteLine(primeList.Count);
             }
+            Console.WriteLine("Found Sets, Finding Primes");
             List<int> filteredPrimes = new List<int>();
             foreach(int c in primeList)
             {
@@ -95,25 +77,7 @@ namespace euler_249_c_sharp
                     filteredPrimes.Add(c);
                 }
             }
-            //{
-                
-
-                /*HashSet<int> next_set = new HashSet<int>(current_set);
-                next_set.Remove(a);
-                if (!subsets.Contains(next_set))
-                {
-                    if (next_set.Count == 1)
-                    {
-                        subsets.Add(next_set);
-                    }
-                    else
-                    {
-                        FindSubsets(next_set);
-                    }
-                }*/
-                
-            //}
-            Console.WriteLine("Subset Count: " + filteredPrimes.Count);
+            return filteredPrimes.Count;
         }
 
         public void PrintSubSets()
