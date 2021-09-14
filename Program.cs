@@ -56,8 +56,8 @@ namespace euler_249_c_sharp
 
         public void FindSubsets(HashSet<int> current_set)
         {   
-            Console.WriteLine("Set Size: " + subsets.Count);
-            if (!current_set.Contains(2) && current_set.Count % 2 == 0)
+            //Console.WriteLine("Set Size: " + subsets.Count);
+            /*if (!current_set.Contains(2) && current_set.Count % 2 == 0)
             {
                 // don't add
             }
@@ -71,18 +71,49 @@ namespace euler_249_c_sharp
                     Console.Write("exit recursion early");
                     return;
                 }
-            }
-            foreach(int a in current_set)
-            {
+            }*/
+            List<int> setList = current_set.ToList();
+            List<int> primeList = new List<int>();
 
-                HashSet<int> next_set = new HashSet<int>(current_set);
+            foreach(int a in setList)
+            {
+                if (primeList.Count > 0)
+                {
+                    List<int> copyList = new List<int>(primeList);
+                    foreach(int b in copyList)
+                    {
+                        primeList.Add(b+a);
+                    }
+                }
+                primeList.Add(a);
+            }
+            List<int> filteredPrimes = new List<int>();
+            foreach(int c in primeList)
+            {
+                if(IsPrime(c))
+                {
+                    filteredPrimes.Add(c);
+                }
+            }
+            //{
+                
+
+                /*HashSet<int> next_set = new HashSet<int>(current_set);
                 next_set.Remove(a);
                 if (!subsets.Contains(next_set))
                 {
-                    FindSubsets(next_set);
-                }
+                    if (next_set.Count == 1)
+                    {
+                        subsets.Add(next_set);
+                    }
+                    else
+                    {
+                        FindSubsets(next_set);
+                    }
+                }*/
                 
-            }
+            //}
+            Console.WriteLine("Subset Count: " + filteredPrimes.Count);
         }
 
         public void PrintSubSets()
