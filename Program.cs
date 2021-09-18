@@ -28,6 +28,7 @@ namespace euler_249_c_sharp
                     Console.Write(" ");
                     first = false;
                 HashSet<int> n_set = new HashSet<int>(all_sets.FindAllPrimes(n));
+                //Console.WriteLine(n_set.Count);
                 Console.Write(all_sets.FindSubsets(n_set));
                 //all_sets.PrimeSets();
                 //all_sets.PrintCount();
@@ -53,22 +54,36 @@ namespace euler_249_c_sharp
         public int FindSubsets(HashSet<int> current_set)
         {   
             List<int> setList = current_set.ToList();
-            List<int> primeList = new List<int>();
-
-            foreach(int a in setList)
+            //ArrayList<int> primeList = new ArrayList<int>();
+            Stack<int> primeList = new Stack<int>();
+            //int[] primeArray = new int [1];
+            //for (int j = 0; j < setList.Count; j ++)
+            bool first = true;
+            foreach (int a in setList)
             {
-                if (primeList.Count > 0)
+                if (!first)
                 {
-                    List<int> copyList = new List<int>(primeList);
-                    foreach(int b in copyList)
+                    //LinkedList<int> copyList = new LinkedList<int>(primeList);
+                    Stack<int> copyList = new Stack<int>(primeList);
+                    //int[] copyArray = new int[primeArray.Count];
+                    //Array.Copy(primeArray, copyArray, copyArray.Count);
+                    //for (int i = 0; i < copyArray.Count; i ++)
+                    foreach (int b in copyList)
                     {
-                        primeList.Add(b+a);
+                        //copyArray[i] = copyArray[i] + a;
+                        primeList.Push(a+b);
                     }
                 }
-                primeList.Add(a);
+                else
+                {
+                    first = false;
+                }
+
+                primeList.Push(a);
+
                 Console.WriteLine(primeList.Count);
             }
-            Console.WriteLine("Found Sets, Finding Primes");
+            //Console.WriteLine("Found Sets, Finding Primes");
             List<int> filteredPrimes = new List<int>();
             foreach(int c in primeList)
             {
